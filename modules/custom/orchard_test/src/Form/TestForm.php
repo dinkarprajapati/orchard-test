@@ -1,5 +1,9 @@
 <?php
-//http://karimboudjema.com/en/drupal/20181013/create-custom-form-form-api-drupal-8
+/**
+ * Resources
+ * http://karimboudjema.com/en/drupal/20181013/create-custom-form-form-api-drupal-8
+ * https://www.php.net/manual/en/function.strrev.php
+ */
 namespace Drupal\orchard_test\Form;
 
 use Drupal\Core\Form\FormBase;
@@ -42,7 +46,6 @@ class TestForm extends FormBase {
         $form['input_string'] = [
             '#type' => 'textfield',
             '#input_string' => $this->t('Input String'),
-            '#required' => TRUE,
         ];
 
         // Group submit handlers in an actions element with a key of "actions" so

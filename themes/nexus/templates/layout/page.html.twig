@@ -153,14 +153,16 @@
 
   <div id="main-content">
     <div class="container">
-      {% if is_front != 1 %}
+      {# DYNAMIC BANNER DISPLAY START #}
+      {% if is_front != 1 %} {# Exclude this part for homepage #}
         {% if page.banner %}
-          {% if banner_chooser is not empty %}
+          {% if banner_chooser is not empty %} {# Display banner #}
             <div class="banner" style="height: 400px;"><img src="{{ banner_chooser }}"/></div>
             {# {{ page.banner }} #}
           {% endif %}
         {% endif %}
       {% endif %}
+      {# DYNAMIC BANNER DISPLAY END #}
       <div class="row">
         {% if page.sidebar_first %}
           {% set primary_col = 8 %}

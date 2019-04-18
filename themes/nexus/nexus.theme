@@ -70,30 +70,31 @@ function nexus_preprocess_page(&$variables) {
     ? (12 / $variables['footer_col']) : 0;
 
     
-  $is_homepage = \Drupal::service('path.matcher')->isFrontPage();
+  $is_homepage = \Drupal::service('path.matcher')->isFrontPage(); //Check if homepage
   if(!$is_homepage){
-    $url = \Drupal\Core\Url::fromRoute('<current>');
-    $custom_connection = \Drupal::database();
+    $variables['banner_chooser'] = '';
+    $url = \Drupal\Core\Url::fromRoute('<current>'); // Get current path of the page
+    $custom_connection = \Drupal::database(); // DB connection
     $get_menu_link = $custom_connection->select('menu_link_content_data', 'mcd')
                   ->condition('mcd.link__uri', '%'.$url->getInternalPath().'%', 'like')
                   ->fields('mcd', ['parent'])
                   ->execute();
     $get_link = explode("menu_link_content:", $get_menu_link->fetchField(0));
-    $get_parent_menu_id = $custom_connection->select('menu_link_content', 'mc')
+    if(isset($get_link[1])) {
+      $get_parent_menu_id = $custom_connection->select('menu_link_content', 'mc')
                   ->condition('mc.uuid', $get_link[1], '=')
                   ->fields('mc', ['id'])
                   ->execute();
-    switch($get_parent_menu_id->fetchField(0)) {
-      case '1':
-        $variables['banner_chooser'] = drupal_get_path('theme', 'nexus') . '/assets/images/banner-a.png';
-        break;
-      case '2':
-        $variables['banner_chooser'] = drupal_get_path('theme', 'nexus') . '/assets/images/banner-b.png';
-        break;
-      default:
-        $variables['banner_chooser'] = '';
-        break;
+      switch($get_parent_menu_id->fetchField(0)) {
+        case '1':
+          $variables['banner_chooser'] = drupal_get_path('theme', 'nexus') . '/assets/images/banner-a.png';
+          break;
+        case '2':
+          $variables['banner_chooser'] = drupal_get_path('theme', 'nexus') . '/assets/images/banner-b.png';
+          break;
+      }
     }
+    
   }
 }
 

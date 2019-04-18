@@ -1,4 +1,8 @@
 <?php
+/**
+ * Resources:
+ * https://www.php.net/manual/en/function.substr-count.php
+ */
 namespace Drupal\orchard_test\Form;
 
 use Drupal\Core\Form\FormBase;
@@ -50,6 +54,13 @@ class TesttwoForm extends FormBase {
 
     }
 
+    /**
+     *  Checks if the string is some kind of gram
+     * 
+     * @param string $get_string
+     * @return string Output type of gram
+     * 
+     */
     protected function checkInsta($get_string) {
         $filter_string = preg_replace('/[^a-zA-Z]/', '', strtolower($get_string));
     
@@ -62,6 +73,13 @@ class TesttwoForm extends FormBase {
         }
     }
     
+    /**
+     *  Checks Heterogram to the string provided
+     * 
+     * @param string $get_string
+     * @return boolean 
+     * 
+     */
     protected function checkHeterogram($get_string) {
         $str_array = str_split($get_string);
         for($i=0; $i<strlen($get_string); $i++) {
@@ -72,6 +90,13 @@ class TesttwoForm extends FormBase {
         return true;
     }
     
+    /**
+     *  Checks Isogram to the string provided
+     * 
+     * @param string $get_string
+     * @return boolean 
+     * 
+     */
     protected function checkIsogram($get_string) {
         $str_array = str_split($get_string);
         $count_first_letter_repitition = 0;

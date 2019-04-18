@@ -1,4 +1,9 @@
 <?php
+/**
+ * Resources:
+ * https://math.stackexchange.com/questions/2865175/angle-between-hour-and-minute-hand-at-242
+ * https://www.phpliveregex.com/#tab-preg-match
+ */
 namespace Drupal\orchard_test\Form;
 
 use Drupal\Core\Form\FormBase;
@@ -49,8 +54,14 @@ class TestthirdForm extends FormBase {
 
     }
 
+    /**
+     *  Calculates the angle between hour hand and minute hand of analaog clock for the given time
+     * 
+     * @param string $time
+     * @return string
+     * 
+     */
     protected function getAngle($time){
-        //https://www.phpliveregex.com/#tab-preg-match
         if(empty($time)) {
             $hour_hand = date("H");
             $minute_hand = date("i");
@@ -66,7 +77,7 @@ class TestthirdForm extends FormBase {
     
         $angle = abs($hour_angle-$minute_angle);
         $degrees = min(360 - $angle, $angle).' degrees';
-        return $degrees; //https://math.stackexchange.com/questions/2865175/angle-between-hour-and-minute-hand-at-242
+        return $degrees;
     }
 
 
