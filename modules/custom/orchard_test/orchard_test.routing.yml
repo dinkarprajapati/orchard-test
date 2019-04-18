@@ -1,0 +1,32 @@
+orchard_test.content:
+  path: '/orchard'
+  defaults:
+    _controller: '\Drupal\orchard_test\Controller\OrchardController::content'
+    _title: 'Hello Orchard'
+  requirements:
+    _permission: 'access content'
+
+
+orchard_test.test_form:
+  path: '/testone'
+  defaults:
+    _form: 'Drupal\orchard_test\Form\TestForm'
+    _title: 'Palindrome Checker'
+  requirements:
+    _permission: 'access content'
+
+orchard_test.test_two_form:
+  path: '/testtwo'
+  defaults:
+    _form: 'Drupal\orchard_test\Form\TesttwoForm'
+    _title: 'Gram Checker'
+  requirements:
+    _permission: 'access content'
+
+orchard_test.test_third_form:
+  path: '/testthird'
+  defaults:
+    _form: 'Drupal\orchard_test\Form\TestthirdForm'
+    _title: 'Clock Hands Angle Checker'
+  requirements:
+    _permission: 'access content'
