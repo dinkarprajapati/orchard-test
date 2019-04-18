@@ -153,6 +153,14 @@
 
   <div id="main-content">
     <div class="container">
+      {% if is_front != 1 %}
+        {% if page.banner %}
+          {% if banner_chooser is not empty %}
+            <div class="banner" style="height: 400px;"><img src="{{ banner_chooser }}"/></div>
+            {# {{ page.banner }} #}
+          {% endif %}
+        {% endif %}
+      {% endif %}
       <div class="row">
         {% if page.sidebar_first %}
           {% set primary_col = 8 %}
